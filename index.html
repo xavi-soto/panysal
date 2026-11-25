@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pan y Sal · Cocina mediterránea a domicilio en València</title>
+  <meta name="description" content="Pan y Sal — Cocina mediterránea de toda la vida, a domicilio en València. Arroces a leña, pescado de lonja y croquetas de la abuela, cocinados al momento y llevados a tu puerta.">
+  <meta name="theme-color" content="#E7F7FC">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Corben:wght@700&family=Nunito:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/styles.css?v=20261125i">
+  <script>document.documentElement.classList.add('js');</script>
+</head>
+<body>
+
+  <a class="skip-link" href="#inicio">Saltar al contenido</a>
+
+  <!-- Sprites SVG reutilizables: nube, sol, estrella -->
+  <svg class="sprites" aria-hidden="true" focusable="false">
+    <symbol id="i-cloud" viewBox="0 0 120 60">
+      <path d="M22 54 C6 54 2 38 14 32 C10 18 28 8 40 18 C46 4 70 2 78 18 C92 10 108 20 104 34 C118 36 118 54 102 54 Z" fill="#fff"/>
+      <path d="M22 54 H102" stroke="#e8e1cc" stroke-width="4" stroke-linecap="round"/>
+    </symbol>
+    <symbol id="i-sun" viewBox="0 0 100 100">
+      <g fill="currentColor">
+        <circle cx="50" cy="50" r="18"/>
+        <path d="M50 2 L55 30 L45 30Z M50 98 L45 70 L55 70Z M2 50 L30 45 L30 55Z M98 50 L70 55 L70 45Z
+                 M16 16 L37 33 L33 37Z M84 84 L63 67 L67 63Z M84 16 L67 37 L63 33Z M16 84 L33 63 L37 67Z"/>
+      </g>
+    </symbol>
+    <symbol id="i-rombos" viewBox="0 0 120 44">
+      <g fill="currentColor">
+        <path d="M20 9 L35 24 L20 39 L5 24Z"/>
+        <path d="M60 2 L75 17 L60 32 L45 17Z"/>
+        <path d="M100 9 L115 24 L100 39 L85 24Z"/>
+      </g>
+    </symbol>
+    <symbol id="i-rombo" viewBox="0 0 40 40">
+      <path fill="currentColor" d="M20 2 L38 20 L20 38 L2 20Z"/>
+    </symbol>
+    <symbol id="i-star" viewBox="0 0 60 60">
+      <path fill="currentColor" d="M30 0 L34 18 L48 6 L40 22 L60 20 L42 30 L60 40 L40 38 L48 54 L34 42 L30 60 L26 42 L12 54 L20 38 L0 40 L18 30 L0 20 L20 22 L12 6 L26 18Z"/>
+    </symbol>
+  </svg>
+
+  <!-- ============ CABECERA ============ -->
+  <header class="site-header" id="top">
+    <div class="site-header__inner container">
+      <a class="logo" href="#inicio" aria-label="Pan y Sal — volver al inicio">
+        <img class="logo__img" src="img/logo1.png" alt="Pan y Sal" width="562" height="187">
+      </a>
+
+      <nav class="nav" id="nav" aria-label="Principal">
+        <ul class="nav__list">
+          <li><a class="btn btn--outline nav__link" href="#como-funciona">Cómo funciona</a></li>
+          <li><a class="btn btn--outline nav__link" href="#carta">La Carta</a></li>
+          <li><a class="btn btn--outline nav__link" href="#reparto">Reparto</a></li>
+          <li><a class="btn btn--solid-orange nav__link" href="#pedir">Pedir ahora</a></li>
+        </ul>
+      </nav>
+
+      <button class="burger" type="button" aria-controls="menu-movil" aria-expanded="false" aria-label="Abrir menú">
+        <span class="burger__bar"></span>
+        <span class="burger__bar"></span>
+        <span class="burger__bar"></span>
+      </button>
+    </div>
+
+    <!-- Menú móvil a pantalla completa -->
+    <div class="mobile-menu" id="menu-movil">
+      <nav aria-label="Menú móvil">
+        <ul class="mobile-menu__list">
+          <li><a href="#inicio">Inicio</a></li>
+          <li><a href="#como-funciona">Cómo funciona</a></li>
+          <li><a href="#carta">La Carta</a></li>
+          <li><a href="#reparto">Reparto</a></li>
+        </ul>
+      </nav>
+      <a class="btn btn--solid-yellow mobile-menu__cta" href="#pedir">Pedir ahora</a>
+      <p class="mobile-menu__note">Pedidos Mar–Dom · 13:00–16:00 y 20:00–23:30</p>
+      <div class="rombos-line rombos-line--orange mobile-menu__wave" aria-hidden="true"></div>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ============ 1. PORTADA: gran PAN Y SAL ============ -->
+    <section class="hero hero--wordmark" id="inicio" aria-labelledby="hero-title">
+      <div class="container hero__stack">
+        <h1 class="hero__wordmark" id="hero-title">
+          <img src="img/panysal.png" alt="Pan y Sal" width="940" height="102">
+        </h1>
+        <p class="hero__tagline">
+          <svg class="hero__tagline-rombos" viewBox="0 0 120 44" aria-hidden="true"><use href="#i-rombos"/></svg>
+          <span>Comida mediterránea a domicilio</span>
+          <svg class="hero__tagline-rombos" viewBox="0 0 120 44" aria-hidden="true"><use href="#i-rombos"/></svg>
+        </p>
+      </div>
+    </section>
+
+    <!-- ============ 2. CÓMO FUNCIONA ============ -->
+    <section class="gallery section--blue" id="como-funciona" aria-labelledby="rest-title">
+      <div class="wave wave--fill-top" aria-hidden="true"></div>
+      <div class="container">
+        <header class="section-head section-head--light reveal">
+          <svg class="rombos rombos--orange" viewBox="0 0 120 44" aria-hidden="true"><use href="#i-rombos"/></svg>
+          <p class="accent">del fogón a tu puerta</p>
+          <h2 class="section-title gallery__title" id="rest-title">Cómo funciona</h2>
+        </header>
+
+        <ol class="steps">
+          <li class="step reveal">
+            <figure class="photo">
+              <div class="photo__frame">
+                <!-- reemplazar imagen -->
+                <img src="img/paso-1-pide.svg" alt="Mano con el móvil pidiendo platos en la app de Pan y Sal" width="800" height="600" loading="lazy">
+              </div>
+            </figure>
+            <span class="fact__num">01</span>
+            <h3 class="fact__big">Pide</h3>
+            <p class="fact__txt">elige tus platos en la carta o llámanos</p>
+          </li>
+          <li class="step reveal">
+            <figure class="photo">
+              <div class="photo__frame">
+                <!-- reemplazar imagen -->
+                <img src="img/paso-2-cocinamos.svg" alt="Paella cocinándose a leña de naranjo en una cocina de azulejos" width="800" height="600" loading="lazy">
+              </div>
+            </figure>
+            <span class="fact__num">02</span>
+            <h3 class="fact__big">Cocinamos</h3>
+            <p class="fact__txt">al momento, el arroz a leña de naranjo</p>
+          </li>
+          <li class="step reveal">
+            <figure class="photo">
+              <div class="photo__frame">
+                <!-- reemplazar imagen -->
+                <img src="img/paso-3-llega.svg" alt="Vespa de reparto aparcada ante una puerta con la bolsa del pedido" width="800" height="600" loading="lazy">
+              </div>
+            </figure>
+            <span class="fact__num">03</span>
+            <h3 class="fact__big">Llega</h3>
+            <p class="fact__txt">a tu puerta en 35–45 min, bien caliente</p>
+          </li>
+        </ol>
+      </div>
+
+    </section>
+
+    <!-- ============ 3. BANDA MARQUEE ============ -->
+    <section class="band" aria-label="Del Mediterráneo">
+      <div class="marquee">
+        <div class="marquee__track">
+          <div class="marquee__group">
+            <span class="marquee__ride">
+              <svg class="cloud cloud--a" viewBox="0 0 120 60" aria-hidden="true"><use href="#i-cloud"/></svg>
+              <!-- reemplazar imagen -->
+              <img class="marquee__vespa" src="img/vespa.svg" alt="Vespa de reparto naranja cargada con una caja de naranjas" width="320" height="222">
+              <svg class="cloud cloud--b" viewBox="0 0 120 60" aria-hidden="true"><use href="#i-cloud"/></svg>
+            </span>
+            <span class="marquee__word t-orange">Del Mediterráneo</span>
+            <svg class="marquee__rombos" viewBox="0 0 120 44" aria-hidden="true"><use href="#i-rombos"/></svg>
+          </div>
+          <div class="marquee__group" aria-hidden="true">
+            <span class="marquee__ride">
+              <svg class="cloud cloud--a" viewBox="0 0 120 60"><use href="#i-cloud"/></svg>
+              <!-- reemplazar imagen -->
+              <img class="marquee__vespa" src="img/vespa.svg" alt="" width="320" height="222">
+              <svg class="cloud cloud--b" viewBox="0 0 120 60"><use href="#i-cloud"/></svg>
+            </span>
+            <span class="marquee__word t-orange">Del Mediterráneo</span>
+            <svg class="marquee__rombos" viewBox="0 0 120 44"><use href="#i-rombos"/></svg>
+          </div>
+        </div>
+      </div>
+      <div class="split">
+        <a class="split__btn" href="#carta">Pide online</a>
+        <a class="split__btn" href="tel:+34654343223">Pide por teléfono</a>
+      </div>
+    </section>
+
+    <!-- ============ 4. LA CARTA · La comanda del Mediterráneo ============ -->
+    <section class="menu section--base" id="carta" aria-labelledby="carta-title">
+      <div class="wave wave--blue wave--top" aria-hidden="true"></div>
+      <div class="container">
+        <header class="menu__head reveal">
+          <svg class="rombos rombos--center" viewBox="0 0 120 44" aria-hidden="true"><use href="#i-rombos"/></svg>
+          <p class="accent accent--blue">la comanda del Mediterráneo</p>
+          <h2 class="menu__title t-orange" id="carta-title">La Carta</h2>
+          <p class="menu__lead">Elige tus platos, pulsa «Añadir» y te lo llevamos a casa. Todo se cocina al momento, con producto de temporada.</p>
+        </header>
+
+        <nav class="chips" aria-label="Apartados de la carta">
+          <a class="chip" href="#ensaladas">Ensaladas</a>
+          <a class="chip" href="#entradas">Entradas</a>
+          <a class="chip" href="#sopas">Sopas y pastas</a>
+          <a class="chip" href="#arroces">Paellas y arroces</a>
+          <a class="chip" href="#postres">Postres</a>
+        </nav>
+
+        <div class="menu-board">
+        <section class="menu-panel menu-panel--blue reveal" id="ensaladas" aria-labelledby="g-ensaladas">
+          <div class="menu-panel__inner">
+            <header class="menu-panel__head">
+              <svg class="menu-panel__rombos" viewBox="0 0 120 44" aria-hidden="true"><use href="#i-rombos"/></svg>
+              <p class="menu-panel__num">Nº 01</p>
+              <h3 class="menu-panel__title" id="g-ensaladas">Ensaladas</h3>
+              <p class="menu-panel__accent">fresquito y de la huerta</p>
+            </header>
+            <ul class="dish-list">
+              <li class="dish-item">
+                <h4 class="dish-item__name"><span class="dish-item__hl">Anchoa casera con tomate valenciano</span></h4>
+                <p class="dish-item__line">del Cantábrico a la huerta</p>
+                <p class="dish-item__desc">Tomate valenciano de temporada, anchoa curada en casa, aceite de oliva virgen y escamas de sal.</p>
+                <button class="add-btn" type="button" data-dish="Anchoa casera con tomate valenciano" aria-label="Añadir Anchoa casera con tomate valenciano al pedido"><span class="add-btn__label">Añadir</span><span class="add-btn__count" hidden></span><span class="add-btn__plus" aria-hidden="true">+</span></button>
+              </li>
+              <li class="dish-item">
+                <h4 class="dish-item__name"><span class="dish-item__hl">Ensalada vegetariana con frutos secos</span></h4>
+                <p class="dish-item__line">verde, crujiente y alegre</p>
+                <p class="dish-item__desc">Brotes tiernos, granada, nueces y almendra tostada, queso fresco y vinagreta de miel y naranja.</p>
+                <button class="add-btn" type="button" data-dish="Ensalada vegetariana con frutos secos" aria-label="Añadir Ensalada vegetariana con frutos secos al pedido"><span class="add-btn__label">Añadir</span><span class="add-btn__count" hidden></span><span class="add-btn__plus" aria-hidden="true">+</span></button>
+              </li>
+            </ul>
+          </div>
+        </section>
+        <section class="menu-panel menu-panel--orange reveal" id="entradas" aria-labelledby="g-entradas">
+          <div class="menu-panel__inner">
+            <header class="menu-panel__head">
+              <svg class="menu-panel__rombos" viewBox="0 0 120 44" aria-hidden="true"><use href="#i-rombos"/></svg>
+              <p class="menu-panel__num">Nº 02</p>
+              <h3 class="menu-panel__title" id="g-entradas">Entradas</h3>
+              <p class="menu-panel__accent">para abrir boca y compartir</p>
+            </header>
+            <ul class="dish-list">
+              <li class="dish-item">
+                <h4 class="dish-item__name"><span class="dish-item__hl">Gambas al ajillo</span></h4>
+                <p class="dish-item__line">chisporroteando en barro</p>
+                <p class="dish-item__desc">Gamba pelada en cazuela de barro con ajo laminado, guindilla y buen aceite. Con pan para mojar.</p>
+                <button class="add-btn" type="button" data-dish="Gambas al ajillo" aria-label="Añadir Gambas al ajillo al pedido"><span class="add-btn__label">Añadir</span><span class="add-btn__count" hidden></span><span class="add-btn__plus" aria-hidden="true">+</span></button>
+              </li>
+              <li class="dish-item">
+                <h4 class="dish-item__name"><span class="dish-item__hl">Chipirones en su tinta</span></h4>
+                <p class="dish-item__line">negros como la noche</p>
+                <p class="dish-item__desc">Chipirón de costa guisado despacio en su tinta con cebolla pochada. Con arroz blanco.</p>
+                <button class="add-btn" type="button" data-dish="Chipirones en su tinta" aria-label="Añadir Chipirones en su tinta al pedido"><span class="add-btn__label">Añadir</span><span class="add-btn__count" hidden></span><span class="add-btn__plus" aria-hidden="true">+</span></button>
+              </li>
+              <li class="dish-item">
+                <h4 class="dish-item__name"><span class="dish-item__hl">Calamar fresco a la romana</span></h4>
+                <p class="dish-item__line">dorado y crujiente</p>
+                <p class="dish-item__desc">Anillas de calamar fresco rebozadas al momento, con limón y alioli de la casa.</p>
+                <button class="add-btn" type="button" data-dish="Calamar fresco a la romana" aria-label="Añadir Calamar fresco a la romana al pedido"><span class="add-btn__label">Añadir</span><span class="add-btn__count" hidden></span><span class="add-btn__plus" aria-hidden="true">+</span></button>
+              </li>
+              <li class="dish-item">
+                <h4 class="dish-item__name"><span class="dish-item__hl">Verduras de la huerta a la plancha</span></h4>
+                <p class="dish-item__line">directas de L’Horta</p>
+                <p class="dish-item__desc">Calabacín, berenjena, pimiento rojo, cebolla tierna y espárragos, con sal en escamas y romesco.</p>
+                <button class="add-btn" type="button" data-dish="Verduras de la huerta a la plancha" aria-label="Añadir Verduras de la huerta a la plancha al pedido"><span class="add-btn__label">Añadir</span><span class="add-btn__count" hidden></span><span class="add-btn__plus" aria-hidden="true">+</span></button>
+              </li>
+              <li class="dish-item">
+                <h4 class="dish-item__name"><span class="dish-item__hl">Croquetas de jamón</span></h4>
+                <p class="dish-item__line">las de la abuela</p>
+                <p class="dish-item__desc">Bechamel cremosa con jamón ibérico y rebozado fino y crujiente. Seis unidades.</p>
+                <button class="add-btn" type="button" data-dish="Croquetas de jamón" aria-label="Añadir Croquetas de jamón al pedido"><span class="add-btn__label">Añadir</span><span class="add-btn__count" hidden></span><span class="add-btn__plus" aria-hidden="true">+</span></button>
+              </li>
+              <li class="dish-item">
+                <h4 class="dish-item__name"><span class="dish-item__hl">Croquetas de boletus</span></h4>
+                <p class="dish-item__line">con sabor a bosque</p>
+                <p class="dish-item__desc">Cremosas, con boletus edulis salteado y un punto de trufa negra. Seis unidades.</p>
+                <button class="add-btn" type="button" data-dish="Croquetas de boletus" aria-label="Añadir Croquetas de boletus al pedido"><span class="add-btn__label">Añadir</span><span class="add-btn__count" hidden></span><span class="add-btn__plus" aria-hidden="true">+</span></button>
+              </li>
+            </ul>
+          </div>
+        </section>
+        <section class="menu-panel menu-panel--orange reveal" id="sopas" aria-labelledby="g-sopas">
+          <div class="menu-panel__inner">
+            <header class="menu-panel__head">
+              <svg class="menu-panel__rombos" viewBox="0 0 120 44" aria-hidden="true"><use href="#i-rombos"/></svg>
+              <p class="menu-panel__num">Nº 03</p>
+              <h3 class="menu-panel__title" id="g-sopas">Sopas y pastas</h3>
+              <p class="menu-panel__accent">de cuchara, frías o calientes</p>
+            </header>
+            <ul class="dish-list">
+              <li class="dish-item">
+                <h4 class="dish-item__name"><span class="dish-item__hl">Sopa de pescado y marisco</span></h4>
+                <p class="dish-item__line">caldo de lonja</p>
+                <p class="dish-item__desc">Fumet de pescado de roca con mejillón, gamba y rape, picada de almendra y un toque de azafrán.</p>
+                <button class="add-btn" type="button" data-dish="Sopa de pescado y marisco" aria-label="Añadir Sopa de pescado y marisco al pedido"><span class="add-btn__label">Añadir</span><span class="add-btn__count" hidden></span><span class="add-btn__plus" aria-hidden="true">+</span></button>
+              </li>
+              <li class="dish-item">
+                <h4 class="dish-item__name"><span class="dish-item__hl">Gazpacho andaluz</span> <span class="stamp">Solo en verano</span><span class="dish-item__note">(en temporada)</span></h4>
+                <p class="dish-item__line">fresquito, fresquito</p>
+                <p class="dish-item__desc">Tomate maduro, pepino, pimiento y pan, con su guarnición picada y un hilo de aceite de oliva.</p>
+                <button class="add-btn" type="button" data-dish="Gazpacho andaluz" aria-label="Añadir Gazpacho andaluz al pedido"><span class="add-btn__label">Añadir</span><span class="add-btn__count" hidden></span><span class="add-btn__plus" aria-hidden="true">+</span></button>
+              </li>
+            </ul>
+          </div>
+        </section>
+        <section class="menu-panel menu-panel--blue reveal" id="arroces" aria-labelledby="g-arroces">
+          <div class="menu-panel__inner">
+            <header class="menu-panel__head">
+              <svg class="menu-panel__rombos" viewBox="0 0 120 44" aria-hidden="true"><use href="#i-rombos"/></svg>
+              <p class="menu-panel__num">Nº 04</p>
+              <h3 class="menu-panel__title" id="g-arroces">Paellas y arroces</h3>
+              <p class="menu-panel__accent">a leña de naranjo, con su socarrat</p>
+            </header>
+            <ul class="dish-list">
+              <li class="dish-item">
+                <h4 class="dish-item__name"><span class="dish-item__hl">Fideuá de marisco</span></h4>
+                <p class="dish-item__line">la prima marinera</p>
+                <p class="dish-item__desc">Fideo fino tostado en caldo de pescado, con gamba, sepia y mejillón. Se sirve con alioli.</p>
+                <button class="add-btn" type="button" data-dish="Fideuá de marisco" aria-label="Añadir Fideuá de marisco al pedido"><span class="add-btn__label">Añadir</span><span class="add-btn__count" hidden></span><span class="add-btn__plus" aria-hidden="true">+</span></button>
+              </li>
+              <li class="dish-item">
+                <h4 class="dish-item__name"><span class="dish-item__hl">Paella valenciana</span> <span class="stamp">La de verdad</span><span class="dish-item__note">(pollo, conejo, caracoles, garrofón y verduras)</span></h4>
+                <p class="dish-item__line">la reina de la casa</p>
+                <p class="dish-item__desc">Arroz de la Albufera hecho a leña de naranjo, con judía ferraura y romero. Mínimo dos personas.</p>
+                <button class="add-btn" type="button" data-dish="Paella valenciana" aria-label="Añadir Paella valenciana al pedido"><span class="add-btn__label">Añadir</span><span class="add-btn__count" hidden></span><span class="add-btn__plus" aria-hidden="true">+</span></button>
+              </li>
+              <li class="dish-item">
+                <h4 class="dish-item__name"><span class="dish-item__hl">Arroz del senyoret</span></h4>
+                <p class="dish-item__line">todo pelado, para el señorito</p>
+                <p class="dish-item__desc">Arroz seco con gamba, sepia y calamar ya pelados y limpios. Para comer sin mancharse las manos.</p>
+                <button class="add-btn" type="button" data-dish="Arroz del senyoret" aria-label="Añadir Arroz del senyoret al pedido"><span class="add-btn__label">Añadir</span><span class="add-btn__count" hidden></span><span class="add-btn__plus" aria-hidden="true">+</span></button>
+              </li>
+            </ul>
+          </div>
+        </section>
+        <section class="menu-panel menu-panel--blue reveal" id="postres" aria-labelledby="g-postres">
+          <div class="menu-panel__inner">
+            <header class="menu-panel__head">
+              <svg class="menu-panel__rombos" viewBox="0 0 120 44" aria-hidden="true"><use href="#i-rombos"/></svg>
+              <p class="menu-panel__num">Nº 05</p>
+              <h3 class="menu-panel__title" id="g-postres">Postres</h3>
+              <p class="menu-panel__accent">para acabar con dulzura</p>
+            </header>
+            <ul class="dish-list">
+              <li class="dish-item">
+                <h4 class="dish-item__name"><span class="dish-item__hl">Sorbete de limón</span></h4>
+                <p class="dish-item__line">limones de la Ribera</p>
+                <p class="dish-item__desc">Limón natural exprimido al momento, ligero y helado, con hojas de hierbabuena.</p>
+                <button class="add-btn" type="button" data-dish="Sorbete de limón" aria-label="Añadir Sorbete de limón al pedido"><span class="add-btn__label">Añadir</span><span class="add-btn__count" hidden></span><span class="add-btn__plus" aria-hidden="true">+</span></button>
+              </li>
+              <li class="dish-item">
+                <h4 class="dish-item__name"><span class="dish-item__hl">Flan</span></h4>
+                <p class="dish-item__line">casero, como siempre</p>
+                <p class="dish-item__desc">Flan de huevo de la casa con caramelo bien tostado y nata montada si te apetece.</p>
+                <button class="add-btn" type="button" data-dish="Flan" aria-label="Añadir Flan al pedido"><span class="add-btn__label">Añadir</span><span class="add-btn__count" hidden></span><span class="add-btn__plus" aria-hidden="true">+</span></button>
+              </li>
+            </ul>
+          </div>
+        </section>
+        </div>
+
+        <p class="menu__allergens">¿Alergias? Indícalas en las notas del pedido</p>
+      </div>
+    </section>
+
+    <!-- ============ 5. PEDIR A DOMICILIO ============ -->
+    <section class="contact" id="pedir" aria-labelledby="contact-title">
+      <div class="rombos-line rombos-line--orange wave--top" aria-hidden="true"></div>
+      <div class="contact__rays" aria-hidden="true"></div>
+      <div class="container contact__inner">
+        <p class="accent accent--blue reveal">te lo llevamos a casa</p>
+        <h2 class="contact__title contact__title--logo reveal" id="contact-title"><img src="img/logo3.png" alt="Pan y Sal · Pedir a domicilio" width="562" height="453"></h2>
+
+        <div class="contact__buttons reveal">
+          <a class="btn btn--box btn--box-orange" href="#carta">Elegir platos</a>
+          <a class="btn btn--box" href="tel:+34654343223">Llamar y pedir</a>
+        </div>
+
+        <address class="contact__data reveal" id="reparto">
+          <p class="contact__badge">Solo a domicilio · sin sala ni recogida</p>
+          <p><strong>Zona de reparto:</strong> El Cabanyal, Malva-rosa, Ciutat Vella, Russafa, Benimaclet y alrededores</p>
+          <p><strong>Pedidos:</strong> <span class="nw">Mar–Dom</span> · <span class="nw">13:00–16:00</span> y <span class="nw">20:00–23:30</span></p>
+          <p><strong>Entrega:</strong> <span class="nw">35–45 min</span> desde que confirmas</p>
+          <p><strong>Teléfono:</strong> <a class="nw" href="tel:+34654343223">654 34 32 23</a> · <strong>Correo:</strong> <a href="mailto:restaurante@panysal.com">restaurante@panysal.com</a></p>
+        </address>
+
+        <form class="booking order reveal" id="order" novalidate>
+          <p class="booking__title" id="order-title">Tu pedido</p>
+
+          <div class="order-summary" aria-labelledby="order-title">
+            <ul class="order-list" aria-live="polite"></ul>
+            <p class="order-empty">Aún no has añadido nada. Ve a <a href="#carta">La Carta</a> y pulsa «Añadir» en los platos que te apetezcan.</p>
+          </div>
+
+          <p class="order__step">¿Dónde y cuándo te lo llevamos?</p>
+          <div class="booking__grid">
+            <label class="field">
+              <span>Nombre</span>
+              <input type="text" name="nombre" autocomplete="name" placeholder="Pepa Ferrer" required>
+            </label>
+            <label class="field">
+              <span>Teléfono</span>
+              <input type="tel" name="telefono" autocomplete="tel" placeholder="600 000 000" required>
+            </label>
+            <label class="field field--wide">
+              <span>Dirección de entrega</span>
+              <input type="text" name="direccion" autocomplete="street-address" placeholder="Calle, número, piso y puerta" required>
+            </label>
+            <label class="field">
+              <span>Código postal</span>
+              <input type="text" name="cp" inputmode="numeric" autocomplete="postal-code" placeholder="46011" maxlength="5">
+            </label>
+            <label class="field">
+              <span>¿Cuándo?</span>
+              <select name="cuando">
+                <option selected>Lo antes posible</option>
+                <option>13:30</option><option>14:00</option><option>14:30</option><option>15:00</option>
+                <option>20:30</option><option>21:00</option><option>21:30</option><option>22:00</option><option>22:30</option>
+              </select>
+            </label>
+            <label class="field">
+              <span>Pago</span>
+              <select name="pago">
+                <option>Tarjeta al repartidor</option>
+                <option>Bizum</option>
+                <option>Efectivo</option>
+              </select>
+            </label>
+            <label class="field field--wide">
+              <span>Notas para cocina o el repartidor</span>
+              <textarea name="notas" rows="2" placeholder="Alergias, timbre, «sin guindilla»…"></textarea>
+            </label>
+          </div>
+          <button class="btn btn--solid-orange booking__submit" type="submit">Confirmar pedido</button>
+          <p class="booking__msg" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Acceso flotante al pedido (aparece al añadir platos) -->
+  <a class="cart-fab" href="#pedir" hidden>
+    <span>Mi pedido</span>
+    <span class="cart-fab__count" aria-live="polite">0</span>
+  </a>
+
+  <!-- ============ 6. FOOTER ============ -->
+  <footer class="site-footer">
+    <div class="wave wave--fill" aria-hidden="true"></div>
+    <nav class="footer-nav container" aria-label="Pie de página">
+      <a href="#inicio">Inicio</a>
+      <a href="#como-funciona">Cómo funciona</a>
+      <a href="#carta">Carta</a>
+      <a href="#pedir">Pedir</a>
+    </nav>
+    <p class="footer-logo"><img src="img/logo-pan-y-sal.png" alt="Pan y Sal" width="924" height="851" loading="lazy"></p>
+    <address class="footer-contact container">
+      <a href="tel:+34654343223"><span>Tel</span> 654 34 32 23</a>
+      <a href="mailto:restaurante@panysal.com"><span>Correo</span> restaurante@panysal.com</a>
+    </address>
+    <div class="footer-meta container">
+      <p>Cocina mediterránea a domicilio en València · Solo delivery.</p>
+      <p>© 2026 Pan y Sal</p>
+    </div>
+  </footer>
+
+  <script src="js/main.js?v=20261125i" defer></script>
+</body>
+</html>
