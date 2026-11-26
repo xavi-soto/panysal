@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Corben:wght@700&family=Nunito:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="css/styles.css?v=20261125i">
+  <link rel="stylesheet" href="css/styles.css?v=20261126s">
   <script>document.documentElement.classList.add('js');</script>
 </head>
 <body>
@@ -50,14 +50,14 @@
   <header class="site-header" id="top">
     <div class="site-header__inner container">
       <a class="logo" href="#inicio" aria-label="Pan y Sal — volver al inicio">
-        <img class="logo__img" src="img/logo1.png" alt="Pan y Sal" width="562" height="187">
+        <img class="logo__img" src="img/logo1.png" alt="Pan y Sal" width="451" height="159">
       </a>
 
       <nav class="nav" id="nav" aria-label="Principal">
         <ul class="nav__list">
           <li><a class="btn btn--outline nav__link" href="#como-funciona">Cómo funciona</a></li>
           <li><a class="btn btn--outline nav__link" href="#carta">La Carta</a></li>
-          <li><a class="btn btn--outline nav__link" href="#reparto">Reparto</a></li>
+          <li><a class="btn btn--outline nav__link" href="#pedir">Reparto</a></li>
           <li><a class="btn btn--solid-orange nav__link" href="#pedir">Pedir ahora</a></li>
         </ul>
       </nav>
@@ -76,7 +76,7 @@
           <li><a href="#inicio">Inicio</a></li>
           <li><a href="#como-funciona">Cómo funciona</a></li>
           <li><a href="#carta">La Carta</a></li>
-          <li><a href="#reparto">Reparto</a></li>
+          <li><a href="#pedir">Reparto</a></li>
         </ul>
       </nav>
       <a class="btn btn--solid-yellow mobile-menu__cta" href="#pedir">Pedir ahora</a>
@@ -91,7 +91,7 @@
     <section class="hero hero--wordmark" id="inicio" aria-labelledby="hero-title">
       <div class="container hero__stack">
         <h1 class="hero__wordmark" id="hero-title">
-          <img src="img/panysal.png" alt="Pan y Sal" width="940" height="102">
+          <img src="img/panysal.svg" alt="Pan y Sal" width="1193" height="156">
         </h1>
         <p class="hero__tagline">
           <svg class="hero__tagline-rombos" viewBox="0 0 120 44" aria-hidden="true"><use href="#i-rombos"/></svg>
@@ -132,7 +132,7 @@
             </figure>
             <span class="fact__num">02</span>
             <h3 class="fact__big">Cocinamos</h3>
-            <p class="fact__txt">al momento, el arroz a leña de naranjo</p>
+            <p class="fact__txt">al momento cada uno de nuestros platillos</p>
           </li>
           <li class="step reveal">
             <figure class="photo">
@@ -364,7 +364,7 @@
       <div class="contact__rays" aria-hidden="true"></div>
       <div class="container contact__inner">
         <p class="accent accent--blue reveal">te lo llevamos a casa</p>
-        <h2 class="contact__title contact__title--logo reveal" id="contact-title"><img src="img/logo3.png" alt="Pan y Sal · Pedir a domicilio" width="562" height="453"></h2>
+        <h2 class="contact__title contact__title--logo reveal" id="contact-title"><img src="img/logo3.png" alt="Pan y Sal · Pedir a domicilio" width="452" height="402"></h2>
 
         <div class="contact__buttons reveal">
           <a class="btn btn--box btn--box-orange" href="#carta">Elegir platos</a>
@@ -434,6 +434,11 @@
 
   </main>
 
+  <!-- Volver arriba (aparece al llegar al final de la página) -->
+  <a class="to-top" href="#top" aria-label="Volver arriba">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V6M5.5 11.5 12 5l6.5 6.5" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </a>
+
   <!-- Acceso flotante al pedido (aparece al añadir platos) -->
   <a class="cart-fab" href="#pedir" hidden>
     <span>Mi pedido</span>
@@ -449,7 +454,7 @@
       <a href="#carta">Carta</a>
       <a href="#pedir">Pedir</a>
     </nav>
-    <p class="footer-logo"><img src="img/logo-pan-y-sal.png" alt="Pan y Sal" width="924" height="851" loading="lazy"></p>
+    <p class="footer-logo"><img src="img/logo-pan-y-sal.png" alt="Pan y Sal" width="452" height="402" loading="lazy"></p>
     <address class="footer-contact container">
       <a href="tel:+34654343223"><span>Tel</span> 654 34 32 23</a>
       <a href="mailto:restaurante@panysal.com"><span>Correo</span> restaurante@panysal.com</a>
@@ -460,6 +465,6 @@
     </div>
   </footer>
 
-  <script src="js/main.js?v=20261125i" defer></script>
+  <script src="js/main.js?v=20261126s" defer></script>
 </body>
 </html>

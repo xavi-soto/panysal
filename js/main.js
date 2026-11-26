@@ -46,15 +46,42 @@
   var menu = document.getElementById('menu-movil');
   var desktopMQ = window.matchMedia('(min-width: 1025px)');
 
+  // Bloqueo de scroll mientras el menú está abierto. Fija el body en su
+  // posición actual (funciona también en iOS) y la restaura al cerrar.
+  var lockedY = 0;
+  var isLocked = false;
+  function lockScroll(lock) {
+    var root = document.documentElement, body = document.body;
+    if (lock && !isLocked) {
+      lockedY = window.scrollY;
+      root.style.overflow = 'hidden';
+      body.style.position = 'fixed';
+      body.style.top = -lockedY + 'px';
+      body.style.left = '0';
+      body.style.right = '0';
+      isLocked = true;
+    } else if (!lock && isLocked) {
+      root.style.overflow = '';
+      body.style.position = '';
+      body.style.top = '';
+      body.style.left = '';
+      body.style.right = '';
+      window.scrollTo({ top: lockedY, behavior: 'instant' });
+      isLocked = false;
+    }
+  }
+
+  var openedByKeyboard = false;
   function setMenu(open) {
     burger.setAttribute('aria-expanded', String(open));
     burger.setAttribute('aria-label', open ? 'Cerrar menú' : 'Abrir menú');
     menu.classList.toggle('is-open', open);
     document.body.classList.toggle('menu-open', open);
+    lockScroll(open);
     if (open) {
       menu.removeAttribute('inert');
       var first = menu.querySelector('a');
-      if (first) setTimeout(function () { first.focus(); }, 200);
+      if (first && openedByKeyboard) setTimeout(function () { first.focus(); }, 200);
     } else {
       menu.setAttribute('inert', '');
     }
@@ -62,12 +89,12 @@
 
   if (burger && menu) {
     menu.setAttribute('inert', '');
-    burger.addEventListener('click', function () {
+    burger.addEventListener('click', function (e) {
+      // e.detail === 0 → abierto con teclado: solo entonces se enfoca el primer enlace
+      openedByKeyboard = e.detail === 0;
       setMenu(burger.getAttribute('aria-expanded') !== 'true');
     });
-    menu.addEventListener('click', function (e) {
-      if (e.target.closest('a')) setMenu(false);
-    });
+
     document.addEventListener('keydown', function (e) {
       if (e.key === 'Escape' && menu.classList.contains('is-open')) {
         setMenu(false);
@@ -76,6 +103,29 @@
     });
     desktopMQ.addEventListener('change', function (e) { if (e.matches) setMenu(false); });
   }
+
+  /* ---------- 2b. Enlaces internos (#seccion): salto fiable ----------
+     Cierra el menú móvil (y desbloquea el scroll) ANTES de desplazarse, y
+     deja que scroll-margin-top respete la cabecera fija. */
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest('a[href^="#"]');
+    if (!a) return;
+    var id = a.getAttribute('href').slice(1);
+    var target = id && document.getElementById(id);
+    if (!target) return;
+    e.preventDefault();
+    var wasOpen = menu && menu.classList.contains('is-open');
+    if (wasOpen) setMenu(false);
+    // los bloques con fade-in se muestran ya, para no llegar a una sección a medio aparecer
+    target.querySelectorAll('.reveal').forEach(function (el) { el.classList.add('is-visible'); });
+    if (target.classList.contains('reveal')) target.classList.add('is-visible');
+    requestAnimationFrame(function () {
+      target.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'start' });
+      if (history.replaceState) history.replaceState(null, '', '#' + id);
+      if (!target.hasAttribute('tabindex')) target.setAttribute('tabindex', '-1');
+      target.focus({ preventScroll: true });
+    });
+  });
 
   /* ---------- 3. Cabecera con sombra al hacer scroll ---------- */
   var header = document.querySelector('.site-header');
@@ -134,6 +184,34 @@
       });
     }, { rootMargin: '-45% 0px -50% 0px' });
     sections.forEach(function (s) { spy.observe(s); });
+  }
+
+  /* ---------- 5c. Botón "Volver arriba": visible al llegar al pie ---------- */
+  var toTop = document.querySelector('.to-top');
+  var footer = document.querySelector('.site-footer');
+  var toTopRaf = 0;
+  function updateToTop() {
+    toTopRaf = 0;
+    if (!toTop || !footer) return;
+    // visible en cuanto el pie de página asoma en pantalla
+    var show = footer.getBoundingClientRect().top < window.innerHeight - 40;
+    toTop.classList.toggle('is-visible', show);
+    document.body.classList.toggle('has-to-top', show);
+  }
+  if (toTop && footer) {
+    window.addEventListener('scroll', function () {
+      if (!toTopRaf) toTopRaf = requestAnimationFrame(updateToTop);
+    }, { passive: true });
+    window.addEventListener('resize', updateToTop);
+    updateToTop();
+  }
+  if (toTop) {
+    toTop.addEventListener('click', function (e) {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: reduceMotion ? 'auto' : 'smooth' });
+      var logo = document.querySelector('.logo');
+      if (logo) logo.focus({ preventScroll: true });
+    });
   }
 
   /* ---------- 6. Pedido a domicilio (carrito + formulario, maqueta sin backend) ---------- */

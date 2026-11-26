@@ -20,8 +20,8 @@
   --white: #FFFFFF;
 
   /* Titulares: serif ultranegra de remates redondos, como el logo */
-  --f-display: "Corben", "Cooper Black", Georgia, serif;
-  --f-accent: "Corben", "Cooper Black", Georgia, serif;
+  --f-display: "Corben", Georgia, serif;
+  --f-accent: "Corben", Georgia, serif;
   /* Apoyo: grotesca redondeada para botones, etiquetas y cuerpo */
   --f-heavy: "Nunito", system-ui, sans-serif;
   --f-body: "Nunito", system-ui, -apple-system, "Segoe UI", sans-serif;
@@ -56,6 +56,13 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 body.menu-open { overflow: hidden; }
+/* Con el menú abierto el body se fija para bloquear el scroll: la cabecera
+   se ancla a la pantalla para que no se vaya hacia arriba con la página */
+body.menu-open .site-header {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  box-shadow: none;
+}
 img, svg { max-width: 100%; height: auto; display: block; }
 h1, h2, h3, h4, p, ul, figure { margin: 0; }
 ul { padding: 0; list-style: none; }
@@ -63,6 +70,7 @@ a { color: inherit; }
 button, input, select { font: inherit; color: inherit; }
 address { font-style: normal; }
 :focus-visible { outline: 3px solid var(--ink); outline-offset: 3px; }
+[tabindex="-1"]:focus { outline: none; }
 .section--blue :focus-visible, .site-footer :focus-visible, .mobile-menu :focus-visible { outline-color: var(--yellow); }
 
 /* Texto solo para lectores de pantalla */
@@ -87,7 +95,9 @@ address { font-style: normal; }
   padding-inline: var(--gutter);
 }
 
-section[id], #reservar { scroll-margin-top: calc(var(--header-h) + 12px); }
+section[id], #reparto, #order { scroll-margin-top: calc(var(--header-h) + 12px); }
+/* la sección de pedido empieza con la cadena de rombos: se llega justo a ella */
+#pedir { scroll-margin-top: var(--header-h); }
 
 .section--base { background: var(--base); }
 .section--blue { background: var(--blue); color: var(--cream); }
@@ -407,10 +417,11 @@ section[id], #reservar { scroll-margin-top: calc(var(--header-h) + 12px); }
   aspect-ratio: 120 / 44;
   color: var(--orange);
 }
+.hero__wordmark { width: 100%; }
 .hero__wordmark img {
   display: block;
   width: 100%;
-  max-width: min(860px, 100%);
+  max-width: min(640px, 100%);
   height: auto;
   margin-inline: auto;
 }
@@ -618,7 +629,8 @@ section[id], #reservar { scroll-margin-top: calc(var(--header-h) + 12px); }
   text-transform: uppercase;
   color: var(--yellow);
 }
-.fact__txt { font-family: var(--f-accent); font-size: 1rem; line-height: 1.25; }
+/* Frase de cada paso: Nunito, la misma letra de "Comida mediterránea a domicilio" */
+.fact__txt { font-family: var(--f-body); font-weight: 700; font-size: clamp(1.05rem, 1.3vw, 1.2rem); line-height: 1.4; }
 
 .wordmark--footerish {
   margin-top: clamp(2rem, 6vw, 4rem);
@@ -955,7 +967,7 @@ section[id], #reservar { scroll-margin-top: calc(var(--header-h) + 12px); }
 .site-footer {
   background: var(--blue);
   color: var(--cream);
-  padding-bottom: 1.5rem;
+  padding-bottom: calc(1.5rem + 64px);   /* hueco para el botón "Volver arriba" */
   overflow: hidden;
 }
 .wave--fill {
@@ -1123,6 +1135,39 @@ section[id], #reservar { scroll-margin-top: calc(var(--header-h) + 12px); }
   40% { transform: scale(1.12) rotate(-3deg); }
   100% { transform: scale(1); }
 }
+
+/* Botón flotante "Volver arriba" */
+.to-top {
+  position: fixed;
+  right: var(--gutter);
+  bottom: calc(16px + env(safe-area-inset-bottom, 0px));
+  z-index: 91;
+  display: grid;
+  place-items: center;
+  width: 52px; height: 52px;
+  background: var(--orange);
+  color: var(--blue-deep);
+  border: 2px solid var(--blue-deep);
+  border-radius: 50%;
+  box-shadow: 4px 4px 0 var(--blue-deep);
+  text-decoration: none;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(16px) scale(.9);
+  transition: opacity .3s ease, transform .35s var(--ease), visibility 0s linear .35s,
+              background-color .25s ease, color .25s ease;
+}
+.to-top svg { width: 24px; height: 24px; }
+.to-top.is-visible {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+  transition: opacity .3s ease, transform .35s var(--ease), visibility 0s,
+              background-color .25s ease, color .25s ease;
+}
+.to-top:hover { background: var(--blue-deep); color: var(--orange); }
+/* si también está el botón "Mi pedido", este sube para no taparlo */
+body.has-to-top .cart-fab { bottom: calc(84px + env(safe-area-inset-bottom, 0px)); }
 
 /* Etiqueta "Solo a domicilio" en los datos */
 .contact__badge {
@@ -1370,7 +1415,7 @@ section[id], #reservar { scroll-margin-top: calc(var(--header-h) + 12px); }
   .nav__link { min-height: 40px; padding: .5rem 1rem; font-size: .8rem; }
 
   .hero.hero--wordmark { padding: 6rem 0 5.75rem; }
-  .hero__wordmark img { max-width: min(620px, 100%); }
+  .hero__wordmark img { max-width: min(600px, 100%); }
 
   .wave--top,
   .gallery .wave--fill-top { margin-bottom: 1.75rem; }
@@ -1396,6 +1441,214 @@ section[id], #reservar { scroll-margin-top: calc(var(--header-h) + 12px); }
 
   .footer-logo img { width: clamp(150px, 28vh, 210px); }
 }
+
+/* =========================================================
+   MÓVIL SUTIL (≤ 768 px) — solo escala, peso, espaciado y proporciones.
+   Escritorio no cambia. Afina con las variables --m-*.
+   ========================================================= */
+@media (max-width: 768px) {
+  :root {
+    --m-gutter: 22px;               /* márgenes laterales                 */
+    --m-pad-seccion: 44px;          /* padding vertical de secciones      */
+    --m-hero-bajo: 84px;            /* zona clara bajo el subtítulo        */
+    --m-escala-titulo: 82%;         /* ancho del título PAN Y SAL         */
+    --m-titulo-seccion: clamp(1.25rem, 5.4vw, 1.45rem);
+    --m-titulo-tarjeta: clamp(1.1rem, 4.7vw, 1.2rem);
+    --m-titulo-paso: 1.08rem;
+    --m-naranja-cinta: #FF7A35;     /* cinta DEL MEDITERRÁNEO en móvil     */
+    --m-hero-arriba: 70px;          /* aire sobre PAN Y SAL               */
+    --m-menu-enlace: clamp(1.5rem, 7vw, 1.9rem);
+    --m-texto: 1rem;                /* lectura: 16 px                     */
+    --m-peso-etiqueta: 800;         /* antes 900                          */
+    --m-ola-alto: 15px;             /* antes 22–24 px                     */
+    --m-ola-ancho: 50px;            /* proporción del dibujo 80×24         */
+    --m-ilustracion-max: 46svh;
+    --gutter: var(--m-gutter);
+    --header-h: 58px;
+  }
+
+  /* --- Pesos: etiquetas y botones en Nunito 800 en vez de 900 --- */
+  .btn, .chip, .split__btn, .add-btn, .cart-fab, .hero__tagline, .fact__num,
+  .menu-panel__num, .photo figcaption, .field span, .contact__badge,
+  .menu__allergens, .footer-nav a, .qty-btn, .order__step, .footer-contact a span {
+    font-weight: var(--m-peso-etiqueta);
+  }
+
+  /* --- Cabecera --- */
+  .logo__img { height: 25px; }
+  .burger {
+    width: 44px; height: 44px;                  /* área táctil 44 px  */
+    border: 0;
+    background: transparent;
+    gap: 4px;
+  }
+  .burger::before {                            /* caja visual más pequeña y fina */
+    content: "";
+    position: absolute;
+    inset: 5px;
+    border: 1.5px solid var(--blue);
+    border-radius: 6px;
+    transition: background-color .25s ease;
+  }
+  .burger__bar { position: relative; width: 18px; height: 2px; }
+  .burger[aria-expanded="true"] { background: transparent; }
+  .burger[aria-expanded="true"]::before { background: var(--blue); }
+  .burger[aria-expanded="true"] .burger__bar:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+  .burger[aria-expanded="true"] .burger__bar:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+
+  /* --- Hero --- */
+  .hero.hero--wordmark { padding: var(--m-hero-arriba) 0 var(--m-hero-bajo); }
+  .hero__stack { gap: .85rem; }
+  .hero__wordmark img { width: var(--m-escala-titulo); max-width: 400px; }
+  .hero__tagline {
+    gap: .5rem;
+    font-size: .78rem;
+    letter-spacing: .1em;
+    line-height: 1.4;
+  }
+  .hero__tagline-rombos { width: 22px; }
+
+  /* --- Olas y rombos más discretos --- */
+  .wave,
+  .wave--fill-top,
+  .wave--fill {
+    height: var(--m-ola-alto);
+    -webkit-mask-size: var(--m-ola-ancho) var(--m-ola-alto);
+            mask-size: var(--m-ola-ancho) var(--m-ola-alto);
+    animation-name: wave-drift-m;
+  }
+  .wave--top,
+  .gallery .wave--fill-top { margin-bottom: 1.75rem; }
+  .rombos { width: 54px; margin-bottom: .5rem; }
+  .rombos-line { height: 12px; -webkit-mask-size: 24px 12px; mask-size: 24px 12px; animation-name: rombo-drift-m; }
+
+  /* --- Cómo funciona --- */
+  .gallery { padding-bottom: var(--m-pad-seccion); }
+  .section-head { margin-bottom: 1.5rem; }
+  .accent { font-size: .85rem; }
+  .gallery__title {
+    font-size: var(--m-titulo-seccion);
+    margin-top: .25rem;
+    text-shadow: .03em .03em 0 rgba(255, 108, 34, .45);   /* sombra suave */
+  }
+  .steps { gap: 2rem 1rem; }
+  .step .photo { margin-bottom: .75rem; }
+  .step .photo__frame {
+    width: 100%;
+    max-height: var(--m-ilustracion-max);
+    aspect-ratio: 16 / 11;
+    border-radius: 12px;
+  }
+  .fact__num { width: 34px; height: 34px; font-size: .7rem; margin-bottom: .2rem; }
+  .fact__big { font-size: var(--m-titulo-paso); }
+  .fact__txt { font-size: var(--m-texto); line-height: 1.45; }
+
+  /* --- Cinta --- */
+  .marquee { padding-block: .85rem; border-width: 3px 0; }
+  .marquee__word { font-size: 1.75rem; padding-top: .28em; }
+  .marquee__word.t-orange { text-shadow: .035em .035em 0 var(--blue-deep); }
+  .marquee__vespa { height: 50px; }
+  .marquee__ride { padding: .6rem 1.1rem .2rem; }
+  .marquee__rombos { width: 54px; }
+  .cloud { width: 40px; }
+  .split__btn { min-height: 48px; font-size: .8rem; }
+  /* Cinta en móvil: naranja intermedio entre el suave (#FFB37E) y el fuerte (#FF6C22).
+     La Vespa no cambia. */
+  .marquee { border-top-color: var(--m-naranja-cinta); border-bottom-color: var(--m-naranja-cinta); }
+  .marquee__word.t-orange { color: var(--m-naranja-cinta); }
+  .split { background: var(--m-naranja-cinta); }
+  .split__btn:hover { color: var(--m-naranja-cinta); }
+
+  /* --- La Carta --- */
+  .menu { padding-bottom: var(--m-pad-seccion); }
+  .menu__head { margin-bottom: 1.25rem; }
+  .menu__title.t-orange { font-size: 1.55rem; text-shadow: .035em .035em 0 var(--sea); }
+  .menu__lead { font-size: var(--m-texto); line-height: 1.5; }
+  .chips { gap: .4rem; margin-bottom: 1.75rem; }
+  .chip { font-size: .72rem; padding: .45rem .85rem; border-width: 1.5px; }
+  .menu-board { gap: 2rem; }
+  .menu-panel { border-width: 1.5px; box-shadow: 5px 5px 0 var(--frame); }
+  /* Tarjetas naranjas (Entradas, Sopas y pastas) con el naranja de la cinta; "Añadir" no cambia */
+  .menu-panel--orange { --frame: var(--m-naranja-cinta); }
+
+  /* Sin marcas azules al tocar: ni resaltado del navegador ni contorno de foco */
+  * { -webkit-tap-highlight-color: transparent; }
+  a:focus, button:focus, a:focus-visible, button:focus-visible,
+  .burger:focus, .chip:focus, .add-btn:focus, .qty-btn:focus { outline: none; }
+  .field input:focus, .field select:focus, .field textarea:focus {
+    outline: 2px solid var(--orange);
+    outline-offset: 0;
+    border-color: var(--ink);
+  }
+  .menu-panel__head { padding: 1.15rem 1rem .9rem; margin-bottom: 1.25rem; }
+  .menu-panel__rombos { width: 52px; margin-bottom: .35rem; }
+  .menu-panel__title { font-size: var(--m-titulo-tarjeta); }
+  .menu-panel__accent { font-size: .82rem; }
+  .dish-list { padding: 0 1.1rem 1.25rem; }
+  .dish-item { padding: .9rem 0 1rem; }
+  .dish-item__name { font-size: .92rem; line-height: 1.2; }
+  .dish-item__line { font-size: .82rem; }
+  .fact__txt { font-size: 1rem; }
+  .booking__title { font-size: 1.35rem; }
+  .hero__tagline { font-size: .72rem; }
+  .dish-item__desc { font-size: var(--m-texto); line-height: 1.5; }
+  .add-btn { min-height: 44px; margin-top: .6rem; border-width: 1.5px; }
+
+  /* --- Pedir --- */
+  .contact { padding-bottom: var(--m-pad-seccion); }
+  .contact__title--logo { margin: .5rem 0 1.25rem; }
+  .contact__title--logo img { width: 120px; }
+  .contact__buttons { max-width: 320px; gap: .6rem; margin-bottom: 1.5rem; }
+  .contact__buttons .btn { min-height: 44px; padding: .5rem .75rem; font-size: .72rem; }
+  .contact__data { font-size: var(--m-texto); line-height: 1.5; }
+  .booking { box-shadow: 5px 5px 0 var(--orange); border-width: 2px; padding: 1.25rem 1.1rem; }
+
+  /* --- Footer --- */
+  .footer-nav { display: none; }
+  .footer-logo { margin: 2rem auto .75rem; }
+  .to-top { width: 46px; height: 46px; box-shadow: 3px 3px 0 var(--blue-deep); }
+  /* Footer centrado bajo el logo */
+  .footer-nav {
+    grid-template-columns: 1fr 1fr;
+    justify-items: center;
+    text-align: center;
+    gap: 0 .5rem;
+  }
+  .footer-contact {
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+    margin-top: 1rem;
+    text-align: center;
+  }
+  .footer-contact a {
+    flex-direction: column;
+    justify-content: center;
+    gap: .1rem;
+    min-height: 0;
+    padding: .45rem 0;
+    font-size: clamp(.95rem, 4.6vw, 1.1rem);
+    overflow-wrap: normal;
+    white-space: nowrap;
+  }
+  .footer-contact a span { font-size: .62rem; }
+  .footer-meta {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    text-align: center;
+    gap: .2rem;
+    margin-top: 1.25rem;
+    font-size: .8rem;
+  }
+  /* Menú hamburguesa: enlaces más pequeños */
+  .mobile-menu__list a { font-size: var(--m-menu-enlace); padding: .45rem 0; }
+  .mobile-menu { gap: 1.25rem; }
+  .mobile-menu__note { font-size: .95rem; line-height: 1.4; }
+  .footer-logo img { width: 130px; border-radius: 22px; box-shadow: 4px 4px 0 var(--orange); }
+}
+
+@keyframes wave-drift-m  { to { -webkit-mask-position: 50px 50%; mask-position: 50px 50%; } }
+@keyframes rombo-drift-m { to { -webkit-mask-position: 24px 50%; mask-position: 24px 50%; } }
 
 /* ---------- Movimiento reducido ---------- */
 @media (prefers-reduced-motion: reduce) {
